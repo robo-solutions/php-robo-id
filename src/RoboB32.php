@@ -3,7 +3,7 @@ namespace Robo\RoboID;
 
 use SKleeschulte\Base32;
 
-class RoboB32 {
+class RoboB32 extends RoboJSON {
 
     /*
     * render id in the specific format
