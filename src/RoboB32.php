@@ -31,11 +31,10 @@ class RoboB32 extends RoboJSON {
         $time = substr($time, -16);                             // use last 16 chars
 
         $rand = bin2hex(Base32::decodeCrockfordToByteStr($rand));
-        $rand = str_pad($rand, 20, '0', STR_PAD_LEFT);          // pad to 80 bit hex
-        $rand = $this->setUuidBits($rand);
-
-        $this->rand = $rand;
-        $this->time = $time;
+        $long = (strlen($rand) < 16);
+        $this->setRand($rand);
+        $this->setTime($time);
+        $this->long = $long;
     }
 
 }

@@ -7,7 +7,7 @@ class RoboHEX extends RoboJSON{
     * render id in the specific format
     */
     function format() {
-        $time = substr($this->time, 5);
+        $time = substr($this->time, -12);
         $rand = $this->rand;
         if(!$this->long) {
             $rand = hex2bin($rand);
@@ -25,13 +25,8 @@ class RoboHEX extends RoboJSON{
     */
     function parse($id) {
         list($time, $rand) = explode('-', $id, 2);
-        $rand = str_pad($rand, 20, '0', STR_PAD_LEFT);
-        $time = str_pad($time, 16, '0', STR_PAD_LEFT);
-
-        $rand = $this->setUuidBits($rand);
-
-        $this->rand = $rand;
-        $this->time = $time;
+        $this->setTime($time);
+        $this->setRand($rand);
         $this->long = $long;
     }
 }
